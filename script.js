@@ -123,3 +123,14 @@ function loadTasks() {
     tasks.forEach(task => renderTask(task));
 }
 
+function filterTasks(e) {
+    const filter = e.target.dataset.filter;
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Retrieve tasks or set empty array
+    
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        if (filter === "all" || (filter === "completed" && task.completed) || (filter === "pending" && !task.completed)) {
+            renderTask(task);
+        }
+    });
+}
