@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", loadTasks);
+
 const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
@@ -58,3 +60,7 @@ function renderTask(task) {
     taskList.appendChild(li);
 }
 
+function loadTasks() {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Retrieve tasks or set empty array
+    tasks.forEach(task => renderTask(task));
+}
